@@ -1,10 +1,6 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React from 'react'
+import SignIn from './src/screens/SignIn'
 
 export default function App() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Hello marketplace!</Text>
-    </View>
-  );
+  return <SignIn />
 }
