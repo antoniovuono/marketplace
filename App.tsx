@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './src/theme'
 import {
@@ -8,16 +8,29 @@ import {
   Karla_500Medium,
   Karla_700Bold,
 } from '@expo-google-fonts/karla'
-import { AppLoading } from '@components/AppLoading'
 import SignIn from '@screens/SignIn'
+import * as SplashScreen from 'expo-splash-screen'
+
+SplashScreen.preventAutoHideAsync()
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
+  let [fontsLoaded] = useFonts({
     Karla_300Light,
     Karla_400Regular,
     Karla_500Medium,
     Karla_700Bold,
   })
 
-  return <ThemeProvider theme={theme}>{!fontsLoaded ? <AppLoading /> : <SignIn />}</ThemeProvider>
+  useEffect(() => {
+    async function prepare() {
+      if (fontsLoaded) await SplashScreen.hideAsync()
+    }
+    prepare()
+  })
+
+  return (
+    <ThemeProvider theme={theme}>
+      <SignIn />
+    </ThemeProvider>
+  )
 }
