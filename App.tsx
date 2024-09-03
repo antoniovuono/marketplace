@@ -1,5 +1,4 @@
 import React from 'react'
-import SignIn from './src/screens/SignIn'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './src/theme'
 import {
@@ -9,7 +8,8 @@ import {
   Karla_500Medium,
   Karla_700Bold,
 } from '@expo-google-fonts/karla'
-import { AppLoading } from './src/components/AppLoading'
+import { AppLoading } from '@components/AppLoading'
+import SignIn from '@screens/SignIn'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
