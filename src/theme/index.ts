@@ -10,4 +10,10 @@ export const theme = {
     BLUE: '#364D9D',
     BLUE_LIGHT: '#647AC7',
   },
+  fonts: {
+    PRIMARY_LIGHT: 'Karla_300Light',
+    PRIMARY_REGULAR: 'Karla_400Regular',
+    PRIMARY_MEDIUM: 'Karla_500Medium',
+    PRIMARY_BOLD: 'Karla_700Bold',
+  },
 }
