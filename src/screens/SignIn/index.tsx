@@ -15,7 +15,7 @@ export function SignIn() {
           </SloganContainer>
         </LogotypeContainer>
 
-        <Button title="Entrar" />
+        <Button title="Entrar" loading={false} />
       </Container>
     </SafeArea>
   )

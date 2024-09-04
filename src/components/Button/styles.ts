@@ -15,6 +15,7 @@ export const ButtonContainer = styled.TouchableOpacity<ButtonContainerProps>`
   padding: 12px;
   border-radius: 6px;
   flex-direction: row;
+  height: 42px;
 `
 
 export const ButtonTitle = styled.Text`
@@ -27,3 +28,8 @@ export const ButtonTitle = styled.Text`
       color: ${theme.colors.GRAY_7};
     `}
 `
+
+export const ButtonLoader = styled.ActivityIndicator.attrs(({ theme }) => ({
+  size: 'small',
+  color: theme.colors.GRAY_7,
+}))``

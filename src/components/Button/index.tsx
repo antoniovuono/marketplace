@@ -1,19 +1,27 @@
 import React from 'react'
-import { ButtonContainer, ButtonTitle } from './styles'
+import { ButtonContainer, ButtonLoader, ButtonTitle } from './styles'
+import { TouchableOpacityProps } from 'react-native'
 
 export type ButtonColor = 'PRIMARY' | 'SECONDARY'
 
-type ButtonProps = {
+type ButtonProps = TouchableOpacityProps & {
   title: string
   icon?: React.ReactNode
   type?: 'PRIMARY' | 'SECONDARY'
+  loading: boolean
 }
 
-export function Button({ title, icon, type = 'PRIMARY' }: ButtonProps) {
+export function Button({ title, icon, type = 'PRIMARY', loading }: ButtonProps) {
   return (
-    <ButtonContainer type={type}>
-      {icon}
-      <ButtonTitle>{title}</ButtonTitle>
+    <ButtonContainer type={type} activeOpacity={0.7}>
+      {loading ? (
+        <ButtonLoader />
+      ) : (
+        <>
+          {icon}
+          <ButtonTitle>{title}</ButtonTitle>
+        </>
+      )}
     </ButtonContainer>
   )
 }
