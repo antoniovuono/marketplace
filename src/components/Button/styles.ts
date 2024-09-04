@@ -8,9 +8,11 @@ export const ButtonContainer = styled.TouchableOpacity`
   align-items: center;
   padding: 12px;
   border-radius: 6px;
+  flex-direction: row;
 `
 
 export const ButtonTitle = styled.Text`
+  margin-left: 8px;
   ${({ theme }) =>
     theme &&
     css`

@@ -2,6 +2,7 @@ import { Container, SafeArea, LogotypeContainer, SloganContainer, Subtitle } fro
 import Logotype from '@assets/logotype.svg'
 import Slogan from '@assets/slogan.svg'
 import { Button } from '@components/Button'
+import { Camera } from 'lucide-react-native'
 
 export function SignIn() {
   return (
@@ -15,9 +16,7 @@ export function SignIn() {
           </SloganContainer>
         </LogotypeContainer>
 
-        <Button.Box>
-          <Button.Title title="Entrar" />
-        </Button.Box>
+        <Button title="Entrar" />
       </Container>
     </SafeArea>
   )
