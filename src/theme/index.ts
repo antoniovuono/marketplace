@@ -16,4 +16,10 @@ export const theme = {
     PRIMARY_MEDIUM: 'Karla_500Medium',
     PRIMARY_BOLD: 'Karla_700Bold',
   },
+  fontSizes: {
+    SMALL: '12px',
+    MEDIUM: '14px',
+    LARGE: '16px',
+    XLARGE: '24px',
+  },
 }

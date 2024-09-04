@@ -1,13 +1,29 @@
+import { css } from 'styled-components'
 import styled from 'styled-components/native'
 
-export const Container = styled.View`
+export const SafeArea = styled.SafeAreaView`
   flex: 1;
-  justify-content: center;
-  align-items: center;
+  background-color: ${({ theme }) => theme.colors.GRAY_7};
 `
 
-export const Title = styled.Text`
-  font-size: 24px;
-  font-family: ${({ theme }) => theme.fonts.PRIMARY_LIGHT};
-  color: ${({ theme }) => theme.colors.BLUE_LIGHT};
+export const Container = styled.View`
+  padding: 0 48px;
+`
+
+export const LogotypeContainer = styled.View`
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+`
+
+export const SloganContainer = styled.View`
+  gap: 2px;
+`
+
+export const Subtitle = styled.Text`
+  ${({ theme }) => css`
+    font-family: ${theme.fonts.PRIMARY_LIGHT};
+    font-size: ${theme.fontSizes.MEDIUM};
+    color: ${theme.colors.GRAY_3};
+  `}
 `
