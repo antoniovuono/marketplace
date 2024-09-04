@@ -1,9 +1,15 @@
 import { css } from 'styled-components'
 import styled from 'styled-components/native'
+import { ButtonColor } from '.'
 
-export const ButtonContainer = styled.TouchableOpacity`
+type ButtonContainerProps = {
+  type: ButtonColor
+}
+
+export const ButtonContainer = styled.TouchableOpacity<ButtonContainerProps>`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.BLUE};
+  background-color: ${({ theme, type }) =>
+    type === 'PRIMARY' ? theme.colors.BLUE_LIGHT : theme.colors.GRAY_1};
   justify-content: center;
   align-items: center;
   padding: 12px;
