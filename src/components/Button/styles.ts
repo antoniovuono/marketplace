@@ -1,9 +1,9 @@
 import { css } from 'styled-components'
 import styled from 'styled-components/native'
-import { ButtonColor } from '.'
+import { TButtonColor } from '.'
 
 type ButtonContainerProps = {
-  type: ButtonColor
+  type: TButtonColor
 }
 
 export const ButtonContainer = styled.TouchableOpacity<ButtonContainerProps>`

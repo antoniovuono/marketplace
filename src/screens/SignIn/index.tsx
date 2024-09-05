@@ -2,6 +2,7 @@ import { Container, SafeArea, LogotypeContainer, SloganContainer, Subtitle } fro
 import Logotype from '@assets/logotype.svg'
 import Slogan from '@assets/slogan.svg'
 import { Button } from '@components/Button'
+import { TextInput } from '@components/TextInput'
 
 export function SignIn() {
   return (
@@ -15,6 +16,8 @@ export function SignIn() {
           </SloganContainer>
         </LogotypeContainer>
 
+        <TextInput />
+        {/* <TextInput /> */}
         <Button title="Entrar" loading={false} />
       </Container>
     </SafeArea>

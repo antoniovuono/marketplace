@@ -2,12 +2,12 @@ import React from 'react'
 import { ButtonContainer, ButtonLoader, ButtonTitle } from './styles'
 import { TouchableOpacityProps } from 'react-native'
 
-export type ButtonColor = 'PRIMARY' | 'SECONDARY'
+export type TButtonColor = 'PRIMARY' | 'SECONDARY'
 
 type ButtonProps = TouchableOpacityProps & {
   title: string
   icon?: React.ReactNode
-  type?: 'PRIMARY' | 'SECONDARY'
+  type?: TButtonColor
   loading: boolean
 }
 
