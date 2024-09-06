@@ -9,7 +9,11 @@ type ButtonContainerProps = {
 export const ButtonContainer = styled.TouchableOpacity<ButtonContainerProps>`
   width: 100%;
   background-color: ${({ theme, type }) =>
-    type === 'PRIMARY' ? theme.colors.BLUE_LIGHT : theme.colors.GRAY_1};
+    type === 'PRIMARY'
+      ? theme.colors.BLUE_LIGHT
+      : type === 'SECONDARY'
+        ? theme.colors.GRAY_1
+        : theme.colors.GRAY_5};
   justify-content: center;
   align-items: center;
   padding: 12px;
@@ -18,14 +22,14 @@ export const ButtonContainer = styled.TouchableOpacity<ButtonContainerProps>`
   height: 42px;
 `
 
-export const ButtonTitle = styled.Text`
+export const ButtonTitle = styled.Text<ButtonContainerProps>`
   margin-left: 8px;
-  ${({ theme }) =>
+  ${({ theme, type }) =>
     theme &&
     css`
       font-size: ${theme.fontSizes.MEDIUM};
       font-family: ${theme.fonts.PRIMARY_BOLD};
-      color: ${theme.colors.GRAY_7};
+      color: ${type === 'TERTIARY' ? theme.colors.GRAY_2 : theme.colors.GRAY_7};
     `}
 `
 

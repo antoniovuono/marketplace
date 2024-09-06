@@ -2,7 +2,7 @@ import React from 'react'
 import { ButtonContainer, ButtonLoader, ButtonTitle } from './styles'
 import { TouchableOpacityProps } from 'react-native'
 
-export type TButtonColor = 'PRIMARY' | 'SECONDARY'
+export type TButtonColor = 'PRIMARY' | 'SECONDARY' | 'TERTIARY'
 
 type ButtonProps = TouchableOpacityProps & {
   title: string
@@ -19,7 +19,7 @@ export function Button({ title, icon, type = 'PRIMARY', loading }: ButtonProps) 
       ) : (
         <>
           {icon}
-          <ButtonTitle>{title}</ButtonTitle>
+          <ButtonTitle type={type}>{title}</ButtonTitle>
         </>
       )}
     </ButtonContainer>

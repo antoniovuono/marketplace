@@ -21,7 +21,6 @@ export function TextInput({ type = 'REGULAR', ...rest }: TInput) {
     <ContainerInput>
       <Input
         {...rest}
-        placeholder="E-mail"
         autoCapitalize="none"
         maxLength={24}
         secureTextEntry={type === 'SECURE' && showPassword ? true : false}

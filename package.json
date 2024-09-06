@@ -17,7 +17,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "expo": "~51.0.28",
     "expo-app-loading": "^2.1.1",
-    "expo-font": "~12.0.9",
+    "expo-font": "~12.0.10",
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "lucide-react-native": "^0.438.0",
