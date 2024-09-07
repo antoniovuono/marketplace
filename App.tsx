@@ -10,6 +10,7 @@ import {
 } from '@expo-google-fonts/karla'
 import SignIn from '@screens/SignIn'
 import * as SplashScreen from 'expo-splash-screen'
+import { StatusBar } from 'react-native'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -30,6 +31,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
       <SignIn />
     </ThemeProvider>
   )
