@@ -22,7 +22,7 @@ export function TextInput({ type = 'REGULAR', ...rest }: TInput) {
       <Input
         {...rest}
         autoCapitalize="none"
-        secureTextEntry={type === 'SECURE' && showPassword ? true : false}
+        secureTextEntry={type === 'SECURE' && showPassword ? false : true}
       />
 
       {type === 'SECURE' && (
