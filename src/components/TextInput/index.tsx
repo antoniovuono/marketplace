@@ -22,7 +22,6 @@ export function TextInput({ type = 'REGULAR', ...rest }: TInput) {
       <Input
         {...rest}
         autoCapitalize="none"
-        maxLength={24}
         secureTextEntry={type === 'SECURE' && showPassword ? true : false}
       />
 
