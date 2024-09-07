@@ -27,7 +27,7 @@ export const ButtonTitle = styled.Text<ButtonContainerProps>`
   ${({ theme, type }) =>
     theme &&
     css`
-      font-size: ${theme.fontSizes.MEDIUM};
+      font-size: ${theme.fontSizes.SMALL};
       font-family: ${theme.fonts.PRIMARY_BOLD};
       color: ${type === 'TERTIARY' ? theme.colors.GRAY_2 : theme.colors.GRAY_7};
     `}

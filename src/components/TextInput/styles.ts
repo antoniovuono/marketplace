@@ -20,7 +20,7 @@ export const Input = styled(TextInput).attrs(({ theme }) => ({
   ${({ theme }) =>
     theme &&
     css`
-      font-size: ${theme.fontSizes.LARGE};
+      font-size: ${theme.fontSizes.MEDIUM};
       color: ${theme.colors.GRAY_4};
       font-family: ${theme.fonts.PRIMARY_REGULAR};
     `}

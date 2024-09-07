@@ -26,7 +26,7 @@ export const SloganContainer = styled.View`
 export const Subtitle = styled.Text`
   ${({ theme }) => css`
     font-family: ${theme.fonts.PRIMARY_LIGHT};
-    font-size: ${theme.fontSizes.MEDIUM};
+    font-size: ${theme.fontSizes.SMALL};
     color: ${theme.colors.GRAY_3};
   `}
 `

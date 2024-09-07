@@ -17,9 +17,10 @@ export const theme = {
     PRIMARY_BOLD: 'Karla_700Bold',
   },
   fontSizes: {
-    SMALL: '12px',
-    MEDIUM: '14px',
-    LARGE: '16px',
+    LIGHT: '12px',
+    SMALL: '14px',
+    MEDIUM: '16px',
+    LARGE: '20px',
     XLARGE: '24px',
   },
 }
