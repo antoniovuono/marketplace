@@ -28,7 +28,7 @@ export function SignUp() {
 
         <FormContainer>
           <AvatarContainer>
-            <Avatar size={100} uri="https://avatars.githubusercontent.com/u/7297243?v=4" />
+            <Avatar size={100} />
           </AvatarContainer>
 
           <TextInput placeholder="Nome" />
