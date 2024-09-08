@@ -40,6 +40,17 @@ export const GreetingsSubTitle = styled.Text`
 export const AvatarContainer = styled.View`
   align-items: center;
 `
+export const UploadAvatarButton = styled.TouchableOpacity`
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: ${({ theme }) => theme.colors.BLUE_LIGHT};
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 60%;
+  left: 55%;
+`
 
 export const FormContainer = styled.View`
   gap: 16px;

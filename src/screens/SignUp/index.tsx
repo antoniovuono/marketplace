@@ -8,10 +8,12 @@ import {
   GreetingsTitle,
   SafeAreaContainer,
   SloganContainer,
+  UploadAvatarButton,
 } from './styles'
 import Logotype from '@assets/logotype.svg'
 import { TextInput } from '@components/TextInput'
 import { Button } from '@components/Button'
+import { PencilLine } from 'lucide-react-native'
 
 export function SignUp() {
   return (
@@ -29,6 +31,10 @@ export function SignUp() {
         <FormContainer>
           <AvatarContainer>
             <Avatar size={100} />
+
+            <UploadAvatarButton activeOpacity={0.7}>
+              <PencilLine size={16} color="white" />
+            </UploadAvatarButton>
           </AvatarContainer>
 
           <TextInput placeholder="Nome" />
