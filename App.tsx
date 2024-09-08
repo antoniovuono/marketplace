@@ -27,7 +27,7 @@ export default function App() {
       if (fontsLoaded) await SplashScreen.hideAsync()
     }
     prepare()
-  })
+  }, [fontsLoaded])
 
   return (
     <ThemeProvider theme={theme}>
