@@ -11,6 +11,7 @@ import {
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'react-native'
 import { SignUp } from '@screens/SignUp'
+import SignIn from '@screens/SignIn'
 
 SplashScreen.preventAutoHideAsync()
 

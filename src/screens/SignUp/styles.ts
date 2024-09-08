@@ -8,6 +8,7 @@ export const SafeAreaContainer = styled.SafeAreaView`
 export const Container = styled.View`
   flex: 1;
   padding: 0 48px;
+  justify-content: space-around;
 `
 
 export const SloganContainer = styled.View`
@@ -34,4 +35,16 @@ export const GreetingsSubTitle = styled.Text`
       font-size: ${theme.fontSizes.SMALL};
       color: ${theme.colors.GRAY_2};
     `}
+`
+
+export const AvatarContainer = styled.View`
+  align-items: center;
+`
+
+export const FormContainer = styled.View`
+  gap: 16px;
+  width: 100%;
+`
+export const BottomSectionContainer = styled.View`
+  gap: 16px;
 `
