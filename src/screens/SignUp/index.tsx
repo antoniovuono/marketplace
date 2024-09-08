@@ -34,8 +34,8 @@ export function SignUp() {
           <TextInput placeholder="Nome" />
           <TextInput placeholder="E-mail" />
           <TextInput placeholder="Telefone" />
-          <TextInput placeholder="Senha" />
-          <TextInput placeholder="Confirmar Senha" />
+          <TextInput placeholder="Senha" type="SECURE" />
+          <TextInput placeholder="Confirmar Senha" type="SECURE" />
 
           <Button title="Criar" loading={false} type="SECONDARY" />
         </FormContainer>
