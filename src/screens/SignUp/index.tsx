@@ -14,8 +14,11 @@ import Logotype from '@assets/logotype.svg'
 import { TextInput } from '@components/TextInput'
 import { Button } from '@components/Button'
 import { PencilLine } from 'lucide-react-native'
+import { useTheme } from 'styled-components/native'
 
 export function SignUp() {
+  const { colors } = useTheme()
+
   return (
     <SafeAreaContainer>
       <Container>
@@ -33,7 +36,7 @@ export function SignUp() {
             <Avatar size={100} />
 
             <UploadAvatarButton activeOpacity={0.7}>
-              <PencilLine size={16} color="white" />
+              <PencilLine size={16} color={colors.GRAY_6} />
             </UploadAvatarButton>
           </AvatarContainer>
 

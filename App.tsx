@@ -12,11 +12,12 @@ import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'react-native'
 import { SignUp } from '@screens/SignUp'
 import SignIn from '@screens/SignIn'
+import { Home } from '@screens/Home'
 
 SplashScreen.preventAutoHideAsync()
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Karla_300Light,
     Karla_400Regular,
     Karla_500Medium,
@@ -33,7 +34,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
-      <SignUp />
+      <Home />
     </ThemeProvider>
   )
 }
