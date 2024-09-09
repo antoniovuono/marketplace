@@ -15,9 +15,11 @@ import { TextInput } from '@components/TextInput'
 import { Button } from '@components/Button'
 import { PencilLine } from 'lucide-react-native'
 import { useTheme } from 'styled-components/native'
+import { useNavigators } from '@navigators/hooks/useNavigators'
 
 export function SignUp() {
   const { colors } = useTheme()
+  const { handleNavigate } = useNavigators()
 
   return (
     <SafeAreaContainer>
@@ -51,7 +53,12 @@ export function SignUp() {
 
         <BottomSectionContainer>
           <GreetingsSubTitle>Já tem uma conta?</GreetingsSubTitle>
-          <Button title="Ir para o login" loading={false} type="TERTIARY" />
+          <Button
+            onPress={() => handleNavigate('SignIn')}
+            title="Ir para o login"
+            loading={false}
+            type="TERTIARY"
+          />
         </BottomSectionContainer>
       </Container>
     </SafeAreaContainer>

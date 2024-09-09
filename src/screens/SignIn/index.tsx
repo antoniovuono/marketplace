@@ -12,8 +12,11 @@ import Logotype from '@assets/logotype.svg'
 import Slogan from '@assets/slogan.svg'
 import { Button } from '@components/Button'
 import { TextInput } from '@components/TextInput'
+import { useNavigators } from '@navigators/hooks/useNavigators'
 
 export function SignIn() {
+  const { handleNavigate } = useNavigators()
+
   return (
     <>
       <SafeAreaContainer>
@@ -40,7 +43,12 @@ export function SignIn() {
 
       <BottomContainer>
         <Subtitle>Acesse sua conta</Subtitle>
-        <Button title="Criar conta" type="TERTIARY" loading={false} />
+        <Button
+          onPress={() => handleNavigate('SignUp')}
+          title="Criar conta"
+          type="TERTIARY"
+          loading={false}
+        />
       </BottomContainer>
     </>
   )

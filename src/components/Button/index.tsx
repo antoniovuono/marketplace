@@ -11,9 +11,9 @@ type ButtonProps = TouchableOpacityProps & {
   loading: boolean
 }
 
-export function Button({ title, icon, type = 'PRIMARY', loading }: ButtonProps) {
+export function Button({ title, icon, type = 'PRIMARY', loading, ...rest }: ButtonProps) {
   return (
-    <ButtonContainer type={type} activeOpacity={0.7}>
+    <ButtonContainer {...rest} type={type} activeOpacity={0.7}>
       {loading ? (
         <ButtonLoader />
       ) : (
