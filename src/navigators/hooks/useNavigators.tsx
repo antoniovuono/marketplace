@@ -7,7 +7,12 @@ export function useNavigators() {
     navigation.navigate(params)
   }
 
+  function handleGoBack() {
+    navigation.goBack()
+  }
+
   return {
     handleNavigate,
+    handleGoBack,
   }
 }
