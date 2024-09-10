@@ -7,5 +7,5 @@ type AvatarProps = {
 }
 
 export function Avatar({ uri, size }: AvatarProps) {
-  return <AvatarImage size={size} source={!uri ? BlankAvatar : { uri: uri }} resizeMode="contain" />
+  return <AvatarImage size={size} source={!uri ? BlankAvatar : { uri: uri }} resizeMode="cover" />
 }
