@@ -15,8 +15,8 @@ import { TextInput } from '@components/TextInput'
 import { Button } from '@components/Button'
 import { PencilLine } from 'lucide-react-native'
 import { useTheme } from 'styled-components/native'
-import { useNavigators } from '@navigators/hooks/useNavigators'
 import { useSignUp } from './hooks/useSignUp'
+import { useNavigators } from '@hooks/useNavigators'
 
 export function SignUp() {
   const { colors } = useTheme()

@@ -12,7 +12,7 @@ import Logotype from '@assets/logotype.svg'
 import Slogan from '@assets/slogan.svg'
 import { Button } from '@components/Button'
 import { TextInput } from '@components/TextInput'
-import { useNavigators } from '@navigators/hooks/useNavigators'
+import { useNavigators } from '@hooks/useNavigators'
 
 export function SignIn() {
   const { handleNavigate } = useNavigators()
