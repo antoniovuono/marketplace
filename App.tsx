@@ -13,6 +13,7 @@ import { StatusBar } from 'react-native'
 
 import { Home } from '@screens/Home'
 import { AppNavigator } from '@navigators/index'
+import { ToastProvider } from 'react-native-toast-notifications'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -33,8 +34,10 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
-      <AppNavigator />
+      <ToastProvider>
+        <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+        <AppNavigator />
+      </ToastProvider>
     </ThemeProvider>
   )
 }

@@ -1,9 +1,12 @@
 import * as ImagePicker from 'expo-image-picker'
 import { useState } from 'react'
 import * as FileSystem from 'expo-file-system'
+import { useToast } from 'react-native-toast-notifications'
 
 export function useSignUp() {
   const [userPhoto, setUserPhoto] = useState<string>('')
+
+  const toast = useToast()
 
   async function handleSelectPhoto() {
     try {
@@ -20,8 +23,9 @@ export function useSignUp() {
         const photoInformation = (await FileSystem.getInfoAsync(photoURI)) as { size: number }
 
         if (photoInformation && photoInformation.size / 1024 / 1024 > 5) {
-          // retornar um toast no lugar
-          return console.log('A foto selecionada deve ter no máximo 3 megabytes')
+          return toast.show('A imagem deve ter no máximo 5MB', {
+            type: 'danger',
+          })
         }
 
         setUserPhoto(photoURI)
