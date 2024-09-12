@@ -14,6 +14,7 @@ import { StatusBar } from 'react-native'
 import { Home } from '@screens/Home'
 import { AppNavigator } from '@navigators/index'
 import { ToastProvider } from 'react-native-toast-notifications'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -25,6 +26,8 @@ export default function App() {
     Karla_700Bold,
   })
 
+  const queryClient = new QueryClient()
+
   useEffect(() => {
     async function prepare() {
       if (fontsLoaded) await SplashScreen.hideAsync()
@@ -35,8 +38,10 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <ToastProvider>
-        <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
-        <AppNavigator />
+        <QueryClientProvider client={queryClient}>
+          <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+          <AppNavigator />
+        </QueryClientProvider>
       </ToastProvider>
     </ThemeProvider>
   )

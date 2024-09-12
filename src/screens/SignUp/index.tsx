@@ -17,11 +17,12 @@ import { PencilLine } from 'lucide-react-native'
 import { useTheme } from 'styled-components/native'
 import { useSignUp } from './hooks/useSignUp'
 import { useNavigators } from '@hooks/useNavigators'
+import { Controller } from 'react-hook-form'
 
 export function SignUp() {
   const { colors } = useTheme()
   const { handleNavigate } = useNavigators()
-  const { userPhoto, handleSelectPhoto } = useSignUp()
+  const { userPhoto, handleSelectPhoto, control, handleSubmit, handleCreateUser } = useSignUp()
 
   return (
     <SafeAreaContainer>
@@ -44,13 +45,57 @@ export function SignUp() {
             </UploadAvatarButton>
           </AvatarContainer>
 
-          <TextInput placeholder="Nome" />
-          <TextInput placeholder="E-mail" />
-          <TextInput placeholder="Telefone" />
-          <TextInput placeholder="Senha" type="SECURE" />
-          <TextInput placeholder="Confirmar Senha" type="SECURE" />
+          <Controller
+            control={control}
+            name="name"
+            render={({ field: { onChange, value } }) => (
+              <TextInput placeholder="Nome" onChangeText={onChange} value={value} />
+            )}
+          />
 
-          <Button title="Criar" loading={false} type="SECONDARY" />
+          <Controller
+            control={control}
+            name="email"
+            render={({ field: { onChange, value } }) => (
+              <TextInput placeholder="E-mail" onChangeText={onChange} value={value} />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name="phone"
+            render={({ field: { onChange, value } }) => (
+              <TextInput placeholder="Telefone" onChangeText={onChange} value={value} />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name="password"
+            render={({ field: { onChange, value } }) => (
+              <TextInput placeholder="Senha" type="SECURE" onChangeText={onChange} value={value} />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name="confirmPassword"
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                placeholder="Confirmar Senha"
+                type="SECURE"
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+
+          <Button
+            title="Criar"
+            loading={false}
+            type="SECONDARY"
+            onPress={handleSubmit(handleCreateUser)}
+          />
         </FormContainer>
 
         <BottomSectionContainer>

@@ -19,11 +19,7 @@ export function TextInput({ type = 'REGULAR', ...rest }: TInput) {
 
   return (
     <ContainerInput>
-      <Input
-        {...rest}
-        autoCapitalize="none"
-        secureTextEntry={type === 'SECURE' && showPassword ? false : true}
-      />
+      <Input {...rest} autoCapitalize="none" secureTextEntry={type === 'SECURE' ? true : false} />
 
       {type === 'SECURE' && (
         <ButtonIcon activeOpacity={0.7} onPress={handleShowPassword}>
