@@ -124,6 +124,7 @@ export function SignUp() {
           title="Criar"
           loading={isPending}
           type="SECONDARY"
+          disabled={isPending}
           onPress={handleSubmit((data) => handleCreateUser(data))}
         />
 

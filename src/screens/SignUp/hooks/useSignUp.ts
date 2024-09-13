@@ -58,6 +58,7 @@ export function useSignUp() {
 
   const { mutate: handleCreateUser, isPending } = useMutation({
     mutationFn: async (formData: CreateUserFormProps) => {
+      await new Promise((resolve) => setTimeout(resolve, 2000))
       return await post('/users', {
         name: formData.name,
         email: formData.email,
