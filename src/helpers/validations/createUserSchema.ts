@@ -7,9 +7,10 @@ export const createUserSchema = z.object({
   email: z
     .string({
       required_error: 'E-mail é obrigatório',
-      invalid_type_error: 'E-mail inválido',
     })
-    .email({}),
+    .email({
+      message: 'E-mail inválido',
+    }),
   phone: z.string({
     required_error: 'Telefone é obrigatório',
   }),

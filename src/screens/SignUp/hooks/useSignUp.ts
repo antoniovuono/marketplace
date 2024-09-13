@@ -3,11 +3,12 @@ import { useState } from 'react'
 import * as FileSystem from 'expo-file-system'
 import { useToast } from 'react-native-toast-notifications'
 import { useForm } from 'react-hook-form'
-import { createUserSchemaType } from 'src/helpers/validations/createUserSchema'
+import { createUserSchema, createUserSchemaType } from 'src/helpers/validations/createUserSchema'
 import { useMutation } from '@tanstack/react-query'
 import { post } from '@services/http'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-type CreateUserProps = {
+type CreateUserFormProps = {
   name: string
   email: string
   phone: string
@@ -19,7 +20,13 @@ export function useSignUp() {
   const [userPhoto, setUserPhoto] = useState<string>('')
 
   const toast = useToast()
-  const { control, handleSubmit } = useForm<createUserSchemaType>()
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<createUserSchemaType>({
+    resolver: zodResolver(createUserSchema),
+  })
 
   async function handleSelectPhoto() {
     try {
@@ -38,6 +45,7 @@ export function useSignUp() {
         if (photoInformation && photoInformation.size / 1024 / 1024 > 5) {
           return toast.show('A imagem deve ter no máximo 5MB', {
             type: 'danger',
+            placement: 'top',
           })
         }
 
@@ -48,20 +56,29 @@ export function useSignUp() {
     }
   }
 
-  const { mutateAsync } = useMutation({
-    mutationFn: async () => {
-      return await post('/users')
+  const { mutate: handleCreateUser, isPending } = useMutation({
+    mutationFn: async (formData: CreateUserFormProps) => {
+      return await post('/users', {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
+      })
+    },
+    onSuccess: () => {
+      toast.show('Usuário criado com sucesso', {
+        type: 'success',
+        placement: 'top',
+      })
+    },
+    onError: (error) => {
+      console.log('react query error', error)
+      toast.show('Erro ao criar usuário', {
+        type: 'danger',
+        placement: 'top',
+      })
     },
   })
-
-  async function handleCreateUser(data: CreateUserProps) {
-    try {
-      console.log('data', data)
-      // await mutateAsync()
-    } catch (error) {
-      console.log('error', error)
-    }
-  }
 
   return {
     userPhoto,
@@ -69,5 +86,7 @@ export function useSignUp() {
     control,
     handleSubmit,
     handleCreateUser,
+    errors,
+    isPending,
   }
 }

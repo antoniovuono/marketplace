@@ -53,7 +53,6 @@ export const UploadAvatarButton = styled.TouchableOpacity`
 `
 
 export const FormContainer = styled.View`
-  gap: 16px;
   width: 100%;
 `
 export const BottomSectionContainer = styled.View`

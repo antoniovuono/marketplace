@@ -22,7 +22,15 @@ import { Controller } from 'react-hook-form'
 export function SignUp() {
   const { colors } = useTheme()
   const { handleNavigate } = useNavigators()
-  const { userPhoto, handleSelectPhoto, control, handleSubmit, handleCreateUser } = useSignUp()
+  const {
+    userPhoto,
+    handleSelectPhoto,
+    control,
+    handleSubmit,
+    handleCreateUser,
+    errors,
+    isPending,
+  } = useSignUp()
 
   return (
     <SafeAreaContainer>
@@ -36,20 +44,24 @@ export function SignUp() {
           </GreetingsSubTitle>
         </SloganContainer>
 
+        <AvatarContainer>
+          <Avatar size={100} uri={userPhoto} />
+
+          <UploadAvatarButton onPress={handleSelectPhoto} activeOpacity={0.7}>
+            <PencilLine size={16} color={colors.GRAY_6} />
+          </UploadAvatarButton>
+        </AvatarContainer>
         <FormContainer>
-          <AvatarContainer>
-            <Avatar size={100} uri={userPhoto} />
-
-            <UploadAvatarButton onPress={handleSelectPhoto} activeOpacity={0.7}>
-              <PencilLine size={16} color={colors.GRAY_6} />
-            </UploadAvatarButton>
-          </AvatarContainer>
-
           <Controller
             control={control}
             name="name"
             render={({ field: { onChange, value } }) => (
-              <TextInput placeholder="Nome" onChangeText={onChange} value={value} />
+              <TextInput
+                placeholder="Nome"
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors && errors.name?.message}
+              />
             )}
           />
 
@@ -57,7 +69,12 @@ export function SignUp() {
             control={control}
             name="email"
             render={({ field: { onChange, value } }) => (
-              <TextInput placeholder="E-mail" onChangeText={onChange} value={value} />
+              <TextInput
+                placeholder="E-mail"
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors && errors?.email?.message}
+              />
             )}
           />
 
@@ -65,7 +82,12 @@ export function SignUp() {
             control={control}
             name="phone"
             render={({ field: { onChange, value } }) => (
-              <TextInput placeholder="Telefone" onChangeText={onChange} value={value} />
+              <TextInput
+                placeholder="Telefone"
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors && errors?.phone?.message}
+              />
             )}
           />
 
@@ -73,7 +95,13 @@ export function SignUp() {
             control={control}
             name="password"
             render={({ field: { onChange, value } }) => (
-              <TextInput placeholder="Senha" type="SECURE" onChangeText={onChange} value={value} />
+              <TextInput
+                placeholder="Senha"
+                type="SECURE"
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors && errors?.password?.message}
+              />
             )}
           />
 
@@ -86,17 +114,18 @@ export function SignUp() {
                 type="SECURE"
                 onChangeText={onChange}
                 value={value}
+                errorMessage={errors && errors?.confirmPassword?.message}
               />
             )}
           />
-
-          <Button
-            title="Criar"
-            loading={false}
-            type="SECONDARY"
-            onPress={handleSubmit(handleCreateUser)}
-          />
         </FormContainer>
+
+        <Button
+          title="Criar"
+          loading={isPending}
+          type="SECONDARY"
+          onPress={handleSubmit((data) => handleCreateUser(data))}
+        />
 
         <BottomSectionContainer>
           <GreetingsSubTitle>Já tem uma conta?</GreetingsSubTitle>

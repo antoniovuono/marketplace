@@ -9,10 +9,11 @@ async function get(url: string, params?: AxiosRequestConfig<any>) {
   }
 }
 
-async function post(url: string, params?: AxiosRequestConfig<any>) {
+async function post(url: string, params?: object, config?: Pick<AxiosRequestConfig, 'headers'>) {
   try {
     return await axiosInstance.post(url, params)
   } catch (error) {
+    console.log('postError', post)
     throw error
   }
 }

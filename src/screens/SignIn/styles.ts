@@ -38,8 +38,7 @@ export const FormContainer = styled.View`
 
 export const InputContainer = styled.View`
   margin-top: 16px;
-  margin-bottom: 32px;
-  gap: 10px;
+  margin-bottom: 14px;
 `
 
 export const BottomContainer = styled.View`
