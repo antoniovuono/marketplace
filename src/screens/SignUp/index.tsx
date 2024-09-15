@@ -18,6 +18,7 @@ import { useTheme } from 'styled-components/native'
 import { useSignUp } from './hooks/useSignUp'
 import { useNavigators } from '@hooks/useNavigators'
 import { Controller } from 'react-hook-form'
+import { phoneMask } from 'src/helpers/masks/phone-mask'
 
 export function SignUp() {
   const { colors } = useTheme()
@@ -84,9 +85,10 @@ export function SignUp() {
             render={({ field: { onChange, value } }) => (
               <TextInput
                 placeholder="Telefone"
-                onChangeText={onChange}
-                value={value}
+                onChangeText={(text) => onChange(phoneMask(text))}
+                value={phoneMask(value || '')}
                 errorMessage={errors && errors?.phone?.message}
+                keyboardType="phone-pad"
               />
             )}
           />
