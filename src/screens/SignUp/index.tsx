@@ -1,6 +1,4 @@
-import { Avatar } from '@components/Avatar'
 import {
-  AvatarContainer,
   BottomSectionContainer,
   Container,
   FormContainer,
@@ -8,30 +6,18 @@ import {
   GreetingsTitle,
   SafeAreaContainer,
   SloganContainer,
-  UploadAvatarButton,
 } from './styles'
 import Logotype from '@assets/logotype.svg'
 import { TextInput } from '@components/TextInput'
 import { Button } from '@components/Button'
-import { PencilLine } from 'lucide-react-native'
-import { useTheme } from 'styled-components/native'
 import { useSignUp } from './hooks/useSignUp'
 import { useNavigators } from '@hooks/useNavigators'
 import { Controller } from 'react-hook-form'
 import { phoneMask } from 'src/helpers/masks/phone-mask'
 
 export function SignUp() {
-  const { colors } = useTheme()
   const { handleNavigate } = useNavigators()
-  const {
-    userPhoto,
-    handleSelectPhoto,
-    control,
-    handleSubmit,
-    handleCreateUser,
-    errors,
-    isPending,
-  } = useSignUp()
+  const { control, handleSubmit, handleCreateUser, errors, isPending } = useSignUp()
 
   return (
     <SafeAreaContainer>
