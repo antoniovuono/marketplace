@@ -13,9 +13,12 @@ import Slogan from '@assets/slogan.svg'
 import { Button } from '@components/Button'
 import { TextInput } from '@components/TextInput'
 import { useNavigators } from '@hooks/useNavigators'
+import { Controller } from 'react-hook-form'
+import { useSignIn } from './hooks/useSignIn'
 
 export function SignIn() {
   const { handleNavigate } = useNavigators()
+  const { control, errors, isPending, handleSubmit, handleSignIn } = useSignIn()
 
   return (
     <>
@@ -33,10 +36,40 @@ export function SignIn() {
             <Subtitle>Acesse sua conta</Subtitle>
 
             <InputContainer>
-              <TextInput placeholder="E-mail" keyboardType="email-address" />
-              <TextInput placeholder="Senha" type="SECURE" />
+              <Controller
+                control={control}
+                name="email"
+                render={({ field: { value, onChange } }) => (
+                  <TextInput
+                    placeholder="E-mail"
+                    keyboardType="email-address"
+                    value={value}
+                    onChangeText={onChange}
+                    errorMessage={errors && errors.email?.message}
+                  />
+                )}
+              />
+
+              <Controller
+                control={control}
+                name="password"
+                render={({ field: { value, onChange } }) => (
+                  <TextInput
+                    placeholder="Senha"
+                    type="SECURE"
+                    value={value}
+                    onChangeText={onChange}
+                    errorMessage={errors && errors.password?.message}
+                  />
+                )}
+              />
             </InputContainer>
-            <Button title="Entrar" loading={false} />
+            <Button
+              title="Entrar"
+              loading={isPending}
+              disabled={isPending}
+              onPress={handleSubmit((data) => handleSignIn(data))}
+            />
           </FormContainer>
         </Container>
       </SafeAreaContainer>

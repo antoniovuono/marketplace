@@ -17,7 +17,7 @@ import { phoneMask } from 'src/helpers/masks/phone-mask'
 
 export function SignUp() {
   const { handleNavigate } = useNavigators()
-  const { control, handleSubmit, handleCreateUser, errors, isPending } = useSignUp()
+  const { control, handleSubmit, handleSignUp, errors, isPending } = useSignUp()
 
   return (
     <SafeAreaContainer>
@@ -106,7 +106,7 @@ export function SignUp() {
           loading={isPending}
           type="SECONDARY"
           disabled={isPending}
-          onPress={handleSubmit((data) => handleCreateUser(data))}
+          onPress={handleSubmit((data) => handleSignUp(data))}
         />
 
         <BottomSectionContainer>

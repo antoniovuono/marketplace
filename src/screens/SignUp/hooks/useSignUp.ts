@@ -5,14 +5,6 @@ import { useMutation } from '@tanstack/react-query'
 import { post } from '@services/http'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-type CreateUserFormProps = {
-  name: string
-  email: string
-  phone: string
-  password: string
-  confirmPassword: string
-}
-
 export function useSignUp() {
   const toast = useToast()
   const {
@@ -24,9 +16,9 @@ export function useSignUp() {
     resolver: zodResolver(createUserSchema),
   })
 
-  const { mutate: handleCreateUser, isPending } = useMutation({
-    mutationKey: ['createUser'],
-    mutationFn: async (formData: CreateUserFormProps) => {
+  const { mutate: handleSignUp, isPending } = useMutation({
+    mutationKey: ['signUp'],
+    mutationFn: async (formData: createUserSchemaType) => {
       return await post('/users', {
         name: formData.name,
         email: formData.email,
@@ -55,6 +47,6 @@ export function useSignUp() {
     errors,
     isPending,
     handleSubmit,
-    handleCreateUser,
+    handleSignUp,
   }
 }
