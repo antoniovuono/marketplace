@@ -45,13 +45,6 @@ export function SignUp() {
           </GreetingsSubTitle>
         </SloganContainer>
 
-        <AvatarContainer>
-          <Avatar size={100} uri={userPhoto} />
-
-          <UploadAvatarButton onPress={handleSelectPhoto} activeOpacity={0.7}>
-            <PencilLine size={16} color={colors.GRAY_6} />
-          </UploadAvatarButton>
-        </AvatarContainer>
         <FormContainer>
           <Controller
             control={control}

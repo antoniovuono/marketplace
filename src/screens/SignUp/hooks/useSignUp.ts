@@ -1,6 +1,3 @@
-import * as ImagePicker from 'expo-image-picker'
-import { useState } from 'react'
-import * as FileSystem from 'expo-file-system'
 import { useToast } from 'react-native-toast-notifications'
 import { useForm } from 'react-hook-form'
 import { createUserSchema, createUserSchemaType } from 'src/helpers/validations/create-user-schema'
@@ -17,46 +14,18 @@ type CreateUserFormProps = {
 }
 
 export function useSignUp() {
-  const [userPhoto, setUserPhoto] = useState<string>('')
-
   const toast = useToast()
   const {
     control,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<createUserSchemaType>({
     resolver: zodResolver(createUserSchema),
   })
 
-  async function handleSelectPhoto() {
-    try {
-      const photoSelected = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      })
-
-      const photoURI = photoSelected.assets && photoSelected.assets[0].uri
-
-      if (!photoSelected.canceled && photoSelected.assets && photoURI) {
-        const photoInformation = (await FileSystem.getInfoAsync(photoURI)) as { size: number }
-
-        if (photoInformation && photoInformation.size / 1024 / 1024 > 5) {
-          return toast.show('A imagem deve ter no máximo 5MB', {
-            type: 'danger',
-            placement: 'top',
-          })
-        }
-
-        setUserPhoto(photoURI)
-      }
-    } catch (error) {
-      console.log('error', error)
-    }
-  }
-
   const { mutate: handleCreateUser, isPending } = useMutation({
+    mutationKey: ['createUser'],
     mutationFn: async (formData: CreateUserFormProps) => {
       return await post('/users', {
         name: formData.name,
@@ -65,14 +34,15 @@ export function useSignUp() {
         password: formData.password,
       })
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.show('Usuário criado com sucesso', {
         type: 'success',
         placement: 'top',
       })
+      reset()
     },
     onError: (error) => {
-      console.log('react query error', error)
+      console.log('react query error post', error)
       toast.show('Erro ao criar usuário', {
         type: 'danger',
         placement: 'top',
@@ -81,12 +51,10 @@ export function useSignUp() {
   })
 
   return {
-    userPhoto,
-    handleSelectPhoto,
     control,
-    handleSubmit,
-    handleCreateUser,
     errors,
     isPending,
+    handleSubmit,
+    handleCreateUser,
   }
 }
