@@ -11,7 +11,6 @@ import {
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'react-native'
 
-import { Home } from '@screens/Home'
 import { AppNavigator } from '@navigators/index'
 import { ToastProvider } from 'react-native-toast-notifications'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'

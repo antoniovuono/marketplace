@@ -4,6 +4,7 @@ import { createUserSchema, createUserSchemaType } from 'src/helpers/validations/
 import { useMutation } from '@tanstack/react-query'
 import { post } from '@services/http'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { AppError } from 'src/helpers/errors'
 
 export function useSignUp() {
   const toast = useToast()
@@ -34,7 +35,13 @@ export function useSignUp() {
       reset()
     },
     onError: (error) => {
-      console.log('react query error post', error)
+      if (error instanceof AppError) {
+        return toast.show(error.message, {
+          type: 'danger',
+          placement: 'top',
+        })
+      }
+
       toast.show('Erro ao criar usuário', {
         type: 'danger',
         placement: 'top',

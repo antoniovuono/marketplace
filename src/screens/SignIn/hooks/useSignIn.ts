@@ -1,8 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { post } from '@services/http'
+import { useUserStore } from '@store/useUserStore'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { useToast } from 'react-native-toast-notifications'
+import { AppError } from 'src/helpers/errors'
 import {
   authenticateUserSchema,
   authenticateUserSchemaType,
@@ -10,6 +12,7 @@ import {
 
 export function useSignIn() {
   const toast = useToast()
+  const setToken = useUserStore((state) => state.setToken)
 
   const {
     control,
@@ -24,10 +27,12 @@ export function useSignIn() {
     mutationKey: ['signIn'],
     mutationFn: async (formData: authenticateUserSchemaType) => {
       await new Promise((resolve) => setTimeout(resolve, 2000))
-      return await post('/users/session', {
+      const response = await post('/users/session', {
         email: formData.email,
         password: formData.password,
       })
+
+      return setToken(response.data.token)
     },
     onSuccess: () => {
       toast.show('Usuário logado com sucesso', {
@@ -36,7 +41,14 @@ export function useSignIn() {
       })
       reset()
     },
-    onError: () => {
+    onError: (error) => {
+      if (error instanceof AppError) {
+        return toast.show(error.message, {
+          type: 'danger',
+          placement: 'top',
+        })
+      }
+
       toast.show('Erro ao logar usuário', {
         type: 'danger',
         placement: 'top',
