@@ -34,10 +34,6 @@ export function useSignIn() {
       return setToken(response.data.token)
     },
     onSuccess: () => {
-      toast.show('Usuário logado com sucesso', {
-        type: 'success',
-        placement: 'top',
-      })
       reset()
     },
     onError: (error) => {

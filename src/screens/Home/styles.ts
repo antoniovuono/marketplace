@@ -26,7 +26,3 @@ export const UserInfoText = styled.Text<{ isBold?: true }>`
       font-family: ${isBold ? theme.fonts.PRIMARY_BOLD : theme.fonts.PRIMARY_REGULAR};
     `}
 `
-
-export const HeaderButtonContainer = styled.View`
-  width: 50%;
-`

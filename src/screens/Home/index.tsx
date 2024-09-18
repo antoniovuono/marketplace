@@ -18,14 +18,13 @@ export function Home() {
           </UserInfoText>
         </UserInfoContainer>
 
-        <HeaderButtonContainer>
-          <Button
-            title="Criar anúncio"
-            loading={false}
-            type="SECONDARY"
-            icon={<Plus color={colors.GRAY_6} size={16} />}
-          />
-        </HeaderButtonContainer>
+        <Button
+          title="Criar anúncio"
+          loading={false}
+          type="SECONDARY"
+          icon={<Plus color={colors.GRAY_6} size={16} />}
+          style={{ width: 139 }}
+        />
       </Header>
     </SafeArea>
   )
