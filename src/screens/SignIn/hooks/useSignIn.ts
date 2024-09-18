@@ -26,7 +26,6 @@ export function useSignIn() {
   const { mutate: handleSignIn, isPending } = useMutation({
     mutationKey: ['signIn'],
     mutationFn: async (formData: authenticateUserSchemaType) => {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
       const response = await post('/users/session', {
         email: formData.email,
         password: formData.password,
