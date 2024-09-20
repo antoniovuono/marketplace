@@ -3,7 +3,6 @@ import { post } from '@services/http'
 import { useUserStore } from '@store/useUserStore'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
-import { useToast } from 'react-native-toast-notifications'
 import { AppError } from 'src/helpers/errors'
 import {
   authenticateUserSchema,
@@ -11,7 +10,6 @@ import {
 } from 'src/helpers/validations/authenticate-user-schema'
 
 export function useSignIn() {
-  const toast = useToast()
   const setToken = useUserStore((state) => state.setToken)
 
   const {
@@ -23,7 +21,12 @@ export function useSignIn() {
     resolver: zodResolver(authenticateUserSchema),
   })
 
-  const { mutate: handleSignIn, isPending } = useMutation({
+  const {
+    mutate: handleSignIn,
+    isPending,
+    isError: handleSignInHasError,
+    error: handleSignInError,
+  } = useMutation({
     mutationKey: ['signIn'],
     mutationFn: async (formData: authenticateUserSchemaType) => {
       const response = await post('/users/session', {
@@ -38,18 +41,21 @@ export function useSignIn() {
     },
     onError: (error) => {
       if (error instanceof AppError) {
-        return toast.show(error.message, {
-          type: 'danger',
-          placement: 'top',
-        })
+        throw error
       }
 
-      toast.show('Erro ao logar usuário', {
-        type: 'danger',
-        placement: 'top',
-      })
+      throw error
     },
   })
 
-  return { control, errors, handleSubmit, reset, isPending, handleSignIn }
+  return {
+    control,
+    errors,
+    handleSubmit,
+    reset,
+    isPending,
+    handleSignIn,
+    handleSignInError,
+    handleSignInHasError,
+  }
 }

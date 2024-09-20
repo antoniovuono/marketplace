@@ -15,10 +15,27 @@ import { TextInput } from '@components/TextInput'
 import { useNavigators } from '@hooks/useNavigators'
 import { Controller } from 'react-hook-form'
 import { useSignIn } from './hooks/useSignIn'
+import { useToast } from 'react-native-toast-notifications'
 
 export function SignIn() {
+  const toast = useToast()
   const { handleNavigate } = useNavigators()
-  const { control, errors, isPending, handleSubmit, handleSignIn } = useSignIn()
+  const {
+    control,
+    errors,
+    isPending,
+    handleSubmit,
+    handleSignIn,
+    handleSignInError,
+    handleSignInHasError,
+  } = useSignIn()
+
+  if (handleSignInHasError) {
+    toast.show(handleSignInError?.message || 'Erro ao logar usuário', {
+      type: 'danger',
+      placement: 'top',
+    })
+  }
 
   return (
     <>
