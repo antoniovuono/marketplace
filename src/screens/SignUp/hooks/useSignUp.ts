@@ -3,7 +3,6 @@ import { createUserSchema, createUserSchemaType } from 'src/helpers/validations/
 import { useMutation } from '@tanstack/react-query'
 import { post } from '@services/http'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AppError } from 'src/helpers/errors'
 
 export function useSignUp() {
   const {
@@ -15,30 +14,28 @@ export function useSignUp() {
     resolver: zodResolver(createUserSchema),
   })
 
+  async function createUser(formData: createUserSchemaType) {
+    return await post('/users', {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      password: formData.password,
+    })
+  }
+
   const {
     mutate: handleSignUp,
     isPending,
-    isError: signUpHasError,
-    error: signUpError,
-    isSuccess: isSignUpSuccess,
+    isSuccess,
+    isError,
+    error,
   } = useMutation({
     mutationKey: ['signUp'],
-    mutationFn: async (formData: createUserSchemaType) => {
-      return await post('/users', {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-      })
-    },
+    mutationFn: createUser,
     onSuccess: async () => {
       reset()
     },
     onError: (error) => {
-      if (error instanceof AppError) {
-        throw error
-      }
-
       throw error
     },
   })
@@ -49,8 +46,8 @@ export function useSignUp() {
     isPending,
     handleSubmit,
     handleSignUp,
-    signUpHasError,
-    signUpError,
-    isSignUpSuccess,
+    isError,
+    error,
+    isSuccess,
   }
 }

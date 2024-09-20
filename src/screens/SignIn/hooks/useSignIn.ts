@@ -3,7 +3,6 @@ import { post } from '@services/http'
 import { useUserStore } from '@store/useUserStore'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
-import { AppError } from 'src/helpers/errors'
 import {
   authenticateUserSchema,
   authenticateUserSchemaType,
@@ -21,29 +20,27 @@ export function useSignIn() {
     resolver: zodResolver(authenticateUserSchema),
   })
 
+  async function authenticateUser(formData: authenticateUserSchemaType) {
+    const response = await post('/users/session', {
+      email: formData.email,
+      password: formData.password,
+    })
+
+    return setToken(response.data.token)
+  }
+
   const {
     mutate: handleSignIn,
     isPending,
-    isError: handleSignInHasError,
-    error: handleSignInError,
+    isError,
+    error,
   } = useMutation({
     mutationKey: ['signIn'],
-    mutationFn: async (formData: authenticateUserSchemaType) => {
-      const response = await post('/users/session', {
-        email: formData.email,
-        password: formData.password,
-      })
-
-      return setToken(response.data.token)
-    },
+    mutationFn: authenticateUser,
     onSuccess: () => {
       reset()
     },
     onError: (error) => {
-      if (error instanceof AppError) {
-        throw error
-      }
-
       throw error
     },
   })
@@ -55,7 +52,7 @@ export function useSignIn() {
     reset,
     isPending,
     handleSignIn,
-    handleSignInError,
-    handleSignInHasError,
+    isError,
+    error,
   }
 }

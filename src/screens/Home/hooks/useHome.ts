@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import { get } from '@services/http'
-import { AppError } from 'src/helpers/errors'
 import { useUserStore } from '@store/useUserStore'
 import { UserProps } from './interfaces'
 
@@ -16,18 +15,15 @@ export function useHome() {
       })
       return response.data.user
     } catch (error) {
-      if (error instanceof AppError) {
-        throw error
-      }
       throw error
     }
   }
 
   const {
     data: user,
-    isError: isUserDataError,
-    error: userDataError,
     isLoading: isUserDataLoading,
+    isError: isUserError,
+    error: fetchUserDataError,
   } = useQuery<UserProps, Error>({
     queryKey: ['user'],
     queryFn: fetchUserData,
@@ -35,8 +31,8 @@ export function useHome() {
 
   return {
     user,
-    isUserDataError,
-    userDataError,
+    isUserError,
     isUserDataLoading,
+    fetchUserDataError,
   }
 }

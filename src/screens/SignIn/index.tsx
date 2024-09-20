@@ -16,26 +16,21 @@ import { useNavigators } from '@hooks/useNavigators'
 import { Controller } from 'react-hook-form'
 import { useSignIn } from './hooks/useSignIn'
 import { useToast } from 'react-native-toast-notifications'
+import { useEffect } from 'react'
 
 export function SignIn() {
   const toast = useToast()
   const { handleNavigate } = useNavigators()
-  const {
-    control,
-    errors,
-    isPending,
-    handleSubmit,
-    handleSignIn,
-    handleSignInError,
-    handleSignInHasError,
-  } = useSignIn()
+  const { control, errors, isPending, handleSubmit, handleSignIn, isError, error } = useSignIn()
 
-  if (handleSignInHasError) {
-    toast.show(handleSignInError?.message || 'Erro ao logar usuário', {
-      type: 'danger',
-      placement: 'top',
-    })
-  }
+  useEffect(() => {
+    if (isError) {
+      toast.show(error?.message || 'Erro ao autenticar usuário', {
+        type: 'danger',
+        placement: 'top',
+      })
+    }
+  }, [isError, error, toast])
 
   return (
     <>

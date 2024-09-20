@@ -4,19 +4,22 @@ import { Button } from '@components/Button'
 import { Plus } from 'lucide-react-native'
 import { useTheme } from 'styled-components/native'
 import { useHome } from './hooks/useHome'
+import { useEffect } from 'react'
 import { useToast } from 'react-native-toast-notifications'
 
 export function Home() {
   const { colors } = useTheme()
   const toast = useToast()
-  const { user, isUserDataError, userDataError } = useHome()
+  const { user, isUserError, fetchUserDataError } = useHome()
 
-  if (isUserDataError) {
-    toast.show(userDataError?.message || 'Erro ao buscar os dados do usuário!', {
-      type: 'danger',
-      placement: 'top',
-    })
-  }
+  useEffect(() => {
+    if (isUserError) {
+      toast.show(fetchUserDataError?.message || 'Erro ao buscar dados do usuário', {
+        type: 'danger',
+        placement: 'top',
+      })
+    }
+  }, [isUserError, fetchUserDataError, toast])
 
   return (
     <SafeArea>

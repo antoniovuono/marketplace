@@ -14,35 +14,32 @@ import { useSignUp } from './hooks/useSignUp'
 import { useNavigators } from '@hooks/useNavigators'
 import { Controller } from 'react-hook-form'
 import { phoneMask } from 'src/helpers/masks/phone-mask'
+import { useEffect } from 'react'
 import { useToast } from 'react-native-toast-notifications'
 
 export function SignUp() {
   const toast = useToast()
   const { handleNavigate } = useNavigators()
-  const {
-    control,
-    handleSubmit,
-    handleSignUp,
-    errors,
-    isPending,
-    signUpHasError,
-    signUpError,
-    isSignUpSuccess,
-  } = useSignUp()
+  const { control, handleSubmit, handleSignUp, errors, isPending, isError, isSuccess, error } =
+    useSignUp()
 
-  if (signUpHasError) {
-    toast.show(signUpError?.message || 'Erro ao criar usuário', {
-      type: 'danger',
-      placement: 'top',
-    })
-  }
+  useEffect(() => {
+    if (isSuccess) {
+      toast.show('Usuário criado com sucesso!', {
+        type: 'success',
+        placement: 'top',
+      })
+    }
+  }, [isSuccess, toast])
 
-  if (isSignUpSuccess) {
-    toast.show('Usuário criado com sucesso', {
-      type: 'success',
-      placement: 'top',
-    })
-  }
+  useEffect(() => {
+    if (isError) {
+      toast.show(error?.message || 'Erro ao criar usuário', {
+        type: 'danger',
+        placement: 'top',
+      })
+    }
+  }, [isError, error, toast])
 
   return (
     <SafeAreaContainer>
