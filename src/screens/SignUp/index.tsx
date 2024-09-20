@@ -14,10 +14,35 @@ import { useSignUp } from './hooks/useSignUp'
 import { useNavigators } from '@hooks/useNavigators'
 import { Controller } from 'react-hook-form'
 import { phoneMask } from 'src/helpers/masks/phone-mask'
+import { useToast } from 'react-native-toast-notifications'
 
 export function SignUp() {
+  const toast = useToast()
   const { handleNavigate } = useNavigators()
-  const { control, handleSubmit, handleSignUp, errors, isPending } = useSignUp()
+  const {
+    control,
+    handleSubmit,
+    handleSignUp,
+    errors,
+    isPending,
+    signUpHasError,
+    signUpError,
+    isSignUpSuccess,
+  } = useSignUp()
+
+  if (signUpHasError) {
+    toast.show(signUpError?.message || 'Erro ao criar usuário', {
+      type: 'danger',
+      placement: 'top',
+    })
+  }
+
+  if (isSignUpSuccess) {
+    toast.show('Usuário criado com sucesso', {
+      type: 'success',
+      placement: 'top',
+    })
+  }
 
   return (
     <SafeAreaContainer>

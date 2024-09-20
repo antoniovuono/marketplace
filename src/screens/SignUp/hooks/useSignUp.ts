@@ -1,4 +1,3 @@
-import { useToast } from 'react-native-toast-notifications'
 import { useForm } from 'react-hook-form'
 import { createUserSchema, createUserSchemaType } from 'src/helpers/validations/create-user-schema'
 import { useMutation } from '@tanstack/react-query'
@@ -7,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { AppError } from 'src/helpers/errors'
 
 export function useSignUp() {
-  const toast = useToast()
   const {
     control,
     formState: { errors },
@@ -17,7 +15,13 @@ export function useSignUp() {
     resolver: zodResolver(createUserSchema),
   })
 
-  const { mutate: handleSignUp, isPending } = useMutation({
+  const {
+    mutate: handleSignUp,
+    isPending,
+    isError: signUpHasError,
+    error: signUpError,
+    isSuccess: isSignUpSuccess,
+  } = useMutation({
     mutationKey: ['signUp'],
     mutationFn: async (formData: createUserSchemaType) => {
       return await post('/users', {
@@ -28,24 +32,14 @@ export function useSignUp() {
       })
     },
     onSuccess: async () => {
-      toast.show('Usuário criado com sucesso', {
-        type: 'success',
-        placement: 'top',
-      })
       reset()
     },
     onError: (error) => {
       if (error instanceof AppError) {
-        return toast.show(error.message, {
-          type: 'danger',
-          placement: 'top',
-        })
+        throw error
       }
 
-      toast.show('Erro ao criar usuário', {
-        type: 'danger',
-        placement: 'top',
-      })
+      throw error
     },
   })
 
@@ -55,5 +49,8 @@ export function useSignUp() {
     isPending,
     handleSubmit,
     handleSignUp,
+    signUpHasError,
+    signUpError,
+    isSignUpSuccess,
   }
 }
