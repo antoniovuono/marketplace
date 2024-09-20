@@ -1,11 +1,22 @@
 import { Avatar } from '@components/Avatar'
-import { Header, HeaderButtonContainer, SafeArea, UserInfoContainer, UserInfoText } from './styles'
+import { Header, SafeArea, UserInfoContainer, UserInfoText } from './styles'
 import { Button } from '@components/Button'
 import { Plus } from 'lucide-react-native'
 import { useTheme } from 'styled-components/native'
+import { useHome } from './hooks/useHome'
+import { useToast } from 'react-native-toast-notifications'
 
 export function Home() {
   const { colors } = useTheme()
+  const toast = useToast()
+  const { user, isUserDataError, userDataError } = useHome()
+
+  if (isUserDataError) {
+    toast.show(userDataError?.message || 'Erro ao buscar os dados do usuário!', {
+      type: 'danger',
+      placement: 'top',
+    })
+  }
 
   return (
     <SafeArea>
@@ -14,7 +25,7 @@ export function Home() {
           <Avatar size={45} />
           <UserInfoText>
             Boas vindas, {`\n`}
-            <UserInfoText isBold>Maria!</UserInfoText>
+            <UserInfoText isBold>{user?.name}!</UserInfoText>
           </UserInfoText>
         </UserInfoContainer>
 
