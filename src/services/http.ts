@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios'
 import { axiosInstance } from './api'
 
-async function get(url: string, params?: object) {
+async function get(url: string, params?: object, config?: Pick<AxiosRequestConfig, 'headers'>) {
   try {
     return await axiosInstance.get(url, params)
   } catch (error) {
