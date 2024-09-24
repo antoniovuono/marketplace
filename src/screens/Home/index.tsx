@@ -22,24 +22,26 @@ export function Home() {
   }, [isUserError, fetchUserDataError, toast])
 
   return (
-    <SafeArea>
-      <Header>
-        <UserInfoContainer>
-          <Avatar size={45} />
-          <UserInfoText>
-            Boas vindas, {`\n`}
-            <UserInfoText isBold>{user?.name}!</UserInfoText>
-          </UserInfoText>
-        </UserInfoContainer>
+    <>
+      <SafeArea>
+        <Header>
+          <UserInfoContainer>
+            <Avatar size={45} />
+            <UserInfoText>
+              Boas vindas, {`\n`}
+              <UserInfoText isBold>{user?.name}!</UserInfoText>
+            </UserInfoText>
+          </UserInfoContainer>
 
-        <Button
-          title="Criar anúncio"
-          loading={false}
-          type="SECONDARY"
-          icon={<Plus color={colors.GRAY_6} size={16} />}
-          style={{ width: 139 }}
-        />
-      </Header>
-    </SafeArea>
+          <Button
+            title="Criar anúncio"
+            loading={false}
+            type="SECONDARY"
+            icon={<Plus color={colors.GRAY_6} size={16} />}
+            style={{ width: 139 }}
+          />
+        </Header>
+      </SafeArea>
+    </>
   )
 }
