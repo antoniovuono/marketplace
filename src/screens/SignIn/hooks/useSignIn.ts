@@ -26,7 +26,7 @@ export function useSignIn() {
       password: formData.password,
     })
 
-    return setToken(response.data.token)
+    setToken(response.data.token)
   }
 
   const {
