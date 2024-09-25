@@ -2,24 +2,31 @@ import { Avatar } from '@components/Avatar'
 import {
   ActiveSalesContainer,
   ActiveSalesLabel,
+  ButtonsContainer,
   Container,
   Header,
+  InteractSalesButton,
   MySalesContainer,
   SafeArea,
   SalesDetailsText,
+  SearchContainer,
+  SearchInput,
+  SearchSection,
   SectionTitle,
   UserActivesSalesContainer,
   UserInfoContainer,
   UserInfoText,
   UserSalesDetailsSection,
   UserSalesDetailsWrapper,
+  VerticalDivider,
 } from './styles'
 import { Button } from '@components/Button'
-import { ArrowRight, Plus, Tag } from 'lucide-react-native'
+import { ArrowRight, Plus, Search, SlidersHorizontal, Tag } from 'lucide-react-native'
 import { useTheme } from 'styled-components/native'
 import { useHome } from './hooks/useHome'
 import { useEffect } from 'react'
 import { useToast } from 'react-native-toast-notifications'
+import { TextInput } from '@components/TextInput'
 
 export function Home() {
   const { colors } = useTheme()
@@ -76,6 +83,26 @@ export function Home() {
               </MySalesContainer>
             </UserSalesDetailsWrapper>
           </UserSalesDetailsSection>
+
+          <SearchSection>
+            <SectionTitle>Compre produtos variados</SectionTitle>
+
+            <SearchContainer>
+              <SearchInput placeholder="Buscar anúncio" autoCapitalize="none" />
+
+              <ButtonsContainer>
+                <InteractSalesButton onPress={() => console.log('search sale')}>
+                  <Search size={20} color={colors.GRAY_2} />
+                </InteractSalesButton>
+
+                <VerticalDivider />
+
+                <InteractSalesButton onPress={() => console.log('filter sales')}>
+                  <SlidersHorizontal size={20} color={colors.GRAY_2} />
+                </InteractSalesButton>
+              </ButtonsContainer>
+            </SearchContainer>
+          </SearchSection>
         </Container>
       </SafeArea>
     </>

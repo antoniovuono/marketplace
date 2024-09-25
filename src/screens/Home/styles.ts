@@ -78,6 +78,40 @@ export const SalesDetailsText = styled.Text<{ secondary?: boolean }>`
 
 export const MySalesContainer = styled.View`
   padding: 5px;
+  align-items: center;
+`
+
+export const SearchSection = styled.View`
+  margin-top: 32px;
+`
+export const SearchContainer = styled.View`
+  margin-top: 12px;
+  background-color: ${({ theme }) => theme.colors.GRAY_7};
+  border-radius: 6px;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`
+export const SearchInput = styled.TextInput`
+  padding: 12px;
+  width: 75%;
+`
+
+export const ButtonsContainer = styled.View`
+  flex-direction: row;
+  padding: 5px 12px;
+  gap: 5px;
+  width: 25%;
+  align-items: center;
+`
+
+export const VerticalDivider = styled.View`
+  width: 1px;
+  height: 18px;
+  background-color: ${({ theme }) => theme.colors.GRAY_5};
+`
+
+export const InteractSalesButton = styled.TouchableOpacity`
+  padding: 5px;
 `
