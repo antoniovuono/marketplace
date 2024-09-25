@@ -9,6 +9,7 @@ export const theme = {
     GRAY_1: '#1A181B',
     BLUE: '#364D9D',
     BLUE_LIGHT: '#647AC7',
+    BLUE_LIGHT_OPACITY: 'rgba(100, 122, 199, 0.15)',
     WARNING: '#E07878',
   },
   fonts: {

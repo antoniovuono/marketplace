@@ -1,7 +1,21 @@
 import { Avatar } from '@components/Avatar'
-import { Header, SafeArea, UserInfoContainer, UserInfoText } from './styles'
+import {
+  ActiveSalesContainer,
+  ActiveSalesLabel,
+  Container,
+  Header,
+  MySalesContainer,
+  SafeArea,
+  SalesDetailsText,
+  SectionTitle,
+  UserActivesSalesContainer,
+  UserInfoContainer,
+  UserInfoText,
+  UserSalesDetailsSection,
+  UserSalesDetailsWrapper,
+} from './styles'
 import { Button } from '@components/Button'
-import { Plus } from 'lucide-react-native'
+import { ArrowRight, Plus, Tag } from 'lucide-react-native'
 import { useTheme } from 'styled-components/native'
 import { useHome } from './hooks/useHome'
 import { useEffect } from 'react'
@@ -24,23 +38,45 @@ export function Home() {
   return (
     <>
       <SafeArea>
-        <Header>
-          <UserInfoContainer>
-            <Avatar size={45} />
-            <UserInfoText>
-              Boas vindas, {`\n`}
-              <UserInfoText isBold>{user?.name}!</UserInfoText>
-            </UserInfoText>
-          </UserInfoContainer>
+        <Container>
+          <Header>
+            <UserInfoContainer>
+              <Avatar size={45} />
+              <UserInfoText>
+                Boas vindas, {`\n`}
+                <UserInfoText isBold>{user?.name}!</UserInfoText>
+              </UserInfoText>
+            </UserInfoContainer>
 
-          <Button
-            title="Criar anúncio"
-            loading={false}
-            type="SECONDARY"
-            icon={<Plus color={colors.GRAY_6} size={16} />}
-            style={{ width: 139 }}
-          />
-        </Header>
+            <Button
+              title="Criar anúncio"
+              loading={false}
+              type="SECONDARY"
+              icon={<Plus color={colors.GRAY_6} size={16} />}
+              style={{ width: 139 }}
+            />
+          </Header>
+
+          <UserSalesDetailsSection>
+            <SectionTitle>Seus produtos anunciados para venda</SectionTitle>
+
+            <UserSalesDetailsWrapper>
+              <UserActivesSalesContainer>
+                <Tag color={colors.BLUE} size={22} />
+
+                <ActiveSalesContainer>
+                  <ActiveSalesLabel>4</ActiveSalesLabel>
+                  <SalesDetailsText>anúncios ativos</SalesDetailsText>
+                </ActiveSalesContainer>
+              </UserActivesSalesContainer>
+
+              <MySalesContainer>
+                <SalesDetailsText secondary>Meus anúncios</SalesDetailsText>
+                <ArrowRight color={colors.BLUE} size={16} />
+              </MySalesContainer>
+            </UserSalesDetailsWrapper>
+          </UserSalesDetailsSection>
+        </Container>
       </SafeArea>
     </>
   )
