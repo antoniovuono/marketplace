@@ -76,9 +76,9 @@ export const SalesDetailsText = styled.Text<{ secondary?: boolean }>`
   `}
 `
 
-export const MySalesContainer = styled.View`
-  padding: 5px;
+export const MySalesContainer = styled.TouchableOpacity`
   align-items: center;
+  flex-direction: row;
 `
 
 export const SearchSection = styled.View`
