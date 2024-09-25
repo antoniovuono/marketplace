@@ -26,7 +26,6 @@ import { useTheme } from 'styled-components/native'
 import { useHome } from './hooks/useHome'
 import { useEffect } from 'react'
 import { useToast } from 'react-native-toast-notifications'
-import { TextInput } from '@components/TextInput'
 
 export function Home() {
   const { colors } = useTheme()
