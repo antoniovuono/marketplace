@@ -28,6 +28,7 @@ import { useHome } from './hooks/useHome'
 import { useEffect } from 'react'
 import { useToast } from 'react-native-toast-notifications'
 import { Sale } from '@components/Sale'
+import { FlatList } from 'react-native'
 
 export function Home() {
   const { colors } = useTheme()
@@ -106,7 +107,19 @@ export function Home() {
           </SearchSection>
 
           <SalesListSection>
-            <Sale />
+            <FlatList
+              data={[1, 2, 3, 4]}
+              renderItem={() => <Sale />}
+              horizontal={false}
+              numColumns={2}
+              contentContainerStyle={{
+                paddingHorizontal: 10,
+              }}
+              columnWrapperStyle={{
+                justifyContent: 'space-between',
+                marginBottom: 10,
+              }}
+            />
           </SalesListSection>
         </Container>
       </SafeArea>
