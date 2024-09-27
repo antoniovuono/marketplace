@@ -9,6 +9,7 @@ import {
   MySalesContainer,
   SafeArea,
   SalesDetailsText,
+  SalesListSection,
   SearchContainer,
   SearchInput,
   SearchSection,
@@ -26,6 +27,7 @@ import { useTheme } from 'styled-components/native'
 import { useHome } from './hooks/useHome'
 import { useEffect } from 'react'
 import { useToast } from 'react-native-toast-notifications'
+import { Sale } from '@components/Sale'
 
 export function Home() {
   const { colors } = useTheme()
@@ -102,6 +104,10 @@ export function Home() {
               </ButtonsContainer>
             </SearchContainer>
           </SearchSection>
+
+          <SalesListSection>
+            <Sale />
+          </SalesListSection>
         </Container>
       </SafeArea>
     </>
