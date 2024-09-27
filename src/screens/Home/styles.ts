@@ -1,5 +1,4 @@
-import { css } from 'styled-components'
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 
 export const SafeArea = styled.SafeAreaView`
   flex: 1;
@@ -114,4 +113,7 @@ export const VerticalDivider = styled.View`
 
 export const InteractSalesButton = styled.TouchableOpacity`
   padding: 5px;
+`
+export const SalesListSection = styled.View`
+  margin-top: 24px;
 `

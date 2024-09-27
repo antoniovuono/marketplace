@@ -1,6 +1,5 @@
 import { TextInput } from 'react-native'
-import { css } from 'styled-components'
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 
 export const Container = styled.View`
   padding: 2px 0;

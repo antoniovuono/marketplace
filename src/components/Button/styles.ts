@@ -1,5 +1,4 @@
-import { css } from 'styled-components'
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 import { TButtonColor } from '.'
 
 type ButtonContainerProps = {
